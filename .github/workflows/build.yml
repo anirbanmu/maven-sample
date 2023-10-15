@@ -13,5 +13,10 @@ jobs:
       - name: Maven build
         run: |
           mvn --no-transfer-progress -Dmaven.test.failure.ignore=true verify
-          ls -al
-          ls -al ./target/surefire-reports
+
+      - name: Archive test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: surefire-test-results
+          path: |
+            target/surefire-reports/*.xml
