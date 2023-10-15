@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    container: maven:3-amazoncorretto-21-debian
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Maven build
+        run: |
+          mvn --no-transfer-progress -Dmaven.test.failure.ignore=true verify
+
+      - name: Archive test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: surefire-test-results
+          path: |
+            target/surefire-reports/*.xml
