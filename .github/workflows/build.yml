@@ -11,7 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     container: maven:3-amazoncorretto-21-debian
     steps:
+      - name: Install git
+        run: |
+          apt-get update && apt-get install --no-install-recommends git -y
+
       - uses: actions/checkout@v4
+
+      - name: Mark workspace as safe directory for git
+        run: |
+          git config --global --add safe.directory "${GITHUB_WORKSPACE}"
 
       - name: Maven build
         run: |
