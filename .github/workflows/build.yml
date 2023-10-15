@@ -1,0 +1,17 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    container: maven:3-amazoncorretto-21-debian
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Maven build
+        run: |
+          mvn --no-transfer-progress -Dmaven.test.failure.ignore=true verify
+          ls -al
+          ls -al ./target/surefire-reports
