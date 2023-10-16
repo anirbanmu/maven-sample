@@ -40,3 +40,4 @@ jobs:
         with:
           report_paths: target/surefire-reports/*.xml
           check_name: Maven tests
+          detailed_summary: true
