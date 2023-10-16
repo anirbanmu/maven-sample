@@ -11,6 +11,6 @@ public class SampleTest {
 
     @Test
     public void testTwo() {
-        Assertions.assertEquals(1, 3 - 2);
+        Assertions.assertEquals(1, 3 - 5);
     }
 }
